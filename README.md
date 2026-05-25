@@ -1,6 +1,6 @@
-# 🗳️ Análise de Candidaturas nas Eleições Municipais de 2020
+# Análise de Candidaturas nas Eleições Municipais de 2020
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto realiza uma análise exploratória dos dados de candidaturas nas **eleições municipais brasileiras de 2020**, com foco na representatividade de **gênero** e **raça/cor** entre os candidatos.
 
@@ -8,7 +8,7 @@ O objetivo central é evidenciar as disparidades de representação política no
 
 ---
 
-## 🎯 Motivação
+## Motivação
 
 A democracia representativa pressupõe que a composição dos candidatos reflita a diversidade da sociedade. No entanto, os dados das eleições municipais de 2020 revelam um cenário preocupante:
 
@@ -18,26 +18,19 @@ A democracia representativa pressupõe que a composição dos candidatos reflita
 
 ---
 
-## 📊 Gráficos
-
-### Candidaturas por Raça
-![Candidaturas por Raça](img/candidaturas_raca_uf.png)
-
-### Candidaturas por Gênero
-![Candidaturas por Gênero](img/candidaturas_genero_uf.png)
-
----
-
 ## 🗂️ Arquivos do Repositório
 
 | Arquivo | Descrição |
 |--------|-----------|
+| `index.html` | Página em HTML do site, raiz geral que puxa estrutura as informações|
+| `assets/style.css` | Página de estilização do site onde ficam todas as regras de layout e design. |
+| `assets/script.js` | Arquivo de scripts onde ficam armazenados os gráficos gerados no VegaLite e animações. |
 | `candidaturas_raca_por_uf.csv` | Totais de candidaturas separados por raça/cor (BRANCA, PARDA, PRETA, INDÍGENA) |
 | `candidaturas_genero_por_uf.csv` | Totais de candidaturas separados por gênero (feminino e masculino) |
 
 ---
 
-## 📁 Fonte dos Dados
+## Fonte dos Dados
 
 Os dados utilizados neste projeto são públicos e foram obtidos a partir do repositório:
 
@@ -46,7 +39,7 @@ Os dados utilizados neste projeto são públicos e foram obtidos a partir do rep
 
 ---
 
-## 📌 Observações
+## Observações
 
-- A análise considera apenas as raças **BRANCA, PARDA, PRETA e INDÍGENA**, excluindo categorias como "SEM INFORMAÇÃO" e "AMARELA" para manter o foco nas disparidades mais relevantes.
+- A análise considera apenas as raças **BRANCA, PARDA, PRETA e INDÍGENA**
 - Os dados cobrem municípios de todos os **26 estados** brasileiros.

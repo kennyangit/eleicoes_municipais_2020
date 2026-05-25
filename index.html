@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleições Municipais 2020 — Representatividade</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <span class="nav-brand">Eleições 2020</span>
+        <div class="nav-links">
+            <a href="#intro">Dados</a>
+            <a href="#graficos">Gráficos</a>
+            <a href="#conclusao">Conclusões</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <p class="hero-eyebrow">Visualização de Dados · Eleições Municipais Brasileiras</p>
+        <h1>Quem disputa o <em>poder</em> no Brasil?</h1>
+        <p class="hero-desc">Uma análise da representatividade de gênero e raça/cor nas candidaturas das eleições
+            municipais
+            de 2020 — os dados revelam um retrato de profunda desigualdade política.</p>
+        <div class="hero-stats">
+            <div>
+                <div class="hero-stat-value">26</div>
+                <div class="hero-stat-label">Estados analisados</div>
+            </div>
+            <div>
+                <div class="hero-stat-value">9</div>
+                <div class="hero-stat-label">Visualizações</div>
+            </div>
+            <div>
+                <div class="hero-stat-value">2020</div>
+                <div class="hero-stat-label">Eleições municipais</div>
+            </div>
+        </div>
+        <span class="scroll-hint">Role para explorar</span>
+    </section>
+
+    <!-- INTRODUÇÃO -->
+    <section id="intro" class="intro-section">
+        <div>
+            <h2>Sobre os dados</h2>
+            <p>Este projeto analisa os dados públicos do TSE sobre candidaturas nas <strong>eleições municipais
+                    brasileiras de
+                    2020</strong>, processados com a biblioteca Pandas (Python) e disponibilizados em dois arquivos CSV
+                no GitHub.
+            </p>
+            <p>O objetivo central é evidenciar as <strong>disparidades de representação política</strong> no Brasil,
+                demonstrando como grupos historicamente marginalizados — mulheres, pessoas pardas, pretas e indígenas —
+                seguem
+                sub-representados nas disputas eleitorais municipais.</p>
+            <p>A análise considera as raças <strong>BRANCA, PARDA, PRETA e INDÍGENA</strong>, excluindo "SEM INFORMAÇÃO"
+                e
+                "AMARELA" para manter o foco nas disparidades mais relevantes.</p>
+        </div>
+        <div>
+            <div class="cols-table">
+                <div class="file-badge"><span>candidaturas_raca_por_uf.csv</span></div>
+                <div class="col-row"><span class="col-name">sigla_uf</span><span class="col-desc">Sigla da Unidade da
+                        Federação
+                        (ex: SP, RJ, MG)</span></div>
+                <div class="col-row"><span class="col-name">BRANCA</span><span class="col-desc">Total de candidaturas —
+                        declaração branca</span></div>
+                <div class="col-row"><span class="col-name">PARDA</span><span class="col-desc">Total de candidaturas —
+                        declaração parda</span></div>
+                <div class="col-row"><span class="col-name">PRETA</span><span class="col-desc">Total de candidaturas —
+                        declaração preta</span></div>
+                <div class="col-row"><span class="col-name">INDÍGENA</span><span class="col-desc">Total de candidaturas
+                        —
+                        declaração indígena</span></div>
+            </div>
+            <br>
+            <div class="cols-table">
+                <div class="file-badge"><span>candidaturas_genero_por_uf.csv</span></div>
+                <div class="col-row"><span class="col-name">sigla_uf</span><span class="col-desc">Sigla da Unidade da
+                        Federação</span></div>
+                <div class="col-row"><span class="col-name">FEMININO</span><span class="col-desc">Total de candidaturas
+                        do
+                        gênero feminino</span></div>
+                <div class="col-row"><span class="col-name">MASCULINO</span><span class="col-desc">Total de candidaturas
+                        do
+                        gênero masculino</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRÁFICOS -->
+    <section id="graficos" class="charts-section">
+        <p class="section-label">Análise exploratória</p>
+        <h2 class="section-title">Visualizações de dados</h2>
+
+        <!-- G1 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 01</span><span class="chart-type-badge">barras
+                    verticais</span></div>
+            <h3 class="chart-title">Total de candidaturas por raça/cor — Brasil</h3>
+            <p class="chart-desc">A <strong>dominância de candidatos brancos</strong> é expressiva — somando mais do que
+                pardos, pretos e indígenas juntos. Isso contrasta com os dados populacionais do IBGE, que mostram pardos
+                e
+                pretos como maioria da população brasileira, evidenciando uma representação política invertida em
+                relação à
+                composição demográfica do país.</p>
+            <figure class="chart-container" id="chart1">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G2 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 02</span><span class="chart-type-badge">rosca /
+                    donut</span></div>
+            <h3 class="chart-title">Proporção de candidaturas por gênero — Brasil</h3>
+            <p class="chart-desc">O gráfico de rosca torna visível de forma imediata a <strong>desproporcionalidade de
+                    gênero</strong>: candidatos masculinos representam mais de 70% do total de candidaturas no Brasil.
+                Essa
+                discrepância reflete barreiras estruturais, culturais e financeiras que ainda impedem uma participação
+                equitativa das mulheres nos espaços de poder político.</p>
+            <figure class="chart-container" id="chart2">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G3 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 03</span><span class="chart-type-badge">barras
+                    horizontais</span></div>
+            <h3 class="chart-title">Ranking de estados por candidaturas femininas</h3>
+            <p class="chart-desc">São Paulo lidera com larga vantagem, seguido por Minas Gerais e Bahia — os três
+                estados mais
+                populosos do país. Vale notar que <strong>volume absoluto não implica paridade</strong>: mesmo SP, que
+                lidera,
+                mantém uma proporção desequilibrada em favor dos homens.</p>
+            <figure class="chart-container" id="chart3">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G4 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 04</span><span class="chart-type-badge">barras
+                    agrupadas</span></div>
+            <h3 class="chart-title">Candidaturas por gênero e região</h3>
+            <p class="chart-desc">O Sudeste e o Nordeste concentram os maiores volumes em ambos os gêneros. Mais
+                importante:
+                em <strong>todas as cinco regiões sem exceção</strong>, as candidaturas masculinas superam as femininas
+                —
+                confirmando que a sub-representação das mulheres é um fenômeno nacional, não regional.</p>
+            <figure class="chart-container" id="chart4">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G5 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 05</span><span class="chart-type-badge">barras 100%
+                    empilhadas</span></div>
+            <h3 class="chart-title">Proporção de gênero por estado (escala 100%)</h3>
+            <p class="chart-desc">A normalização percentual remove o efeito do tamanho dos estados e expõe a
+                <strong>proporção
+                    real de cada gênero</strong>. Nenhum estado se aproxima da paridade (50/50). Em todo o Brasil,
+                candidatos
+                homens representam entre 65% e 80% do total de candidaturas.
+            </p>
+            <figure class="chart-container" id="chart5">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G6 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 06</span><span class="chart-type-badge">barras
+                    empilhadas</span></div>
+            <h3 class="chart-title">Candidaturas por raça/cor em cada estado (absoluto)</h3>
+            <p class="chart-desc">SP, MG e PR lideram em volume absoluto com forte predominância branca. A Bahia se
+                destaca
+                como o estado com maior número de candidatos pardos e pretos. <strong>Candidaturas indígenas mal
+                    aparecem
+                    visualmente</strong> — tal é sua raridade.</p>
+            <figure class="chart-container" id="chart6">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G7 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 07</span><span class="chart-type-badge">barras 100%
+                    empilhadas</span></div>
+            <h3 class="chart-title">Proporção de raça/cor por estado (escala 100%)</h3>
+            <p class="chart-desc">Estados como RS e SC têm quase <strong>100% de candidatos brancos</strong>, enquanto
+                AM e PA
+                mostram predominância parda. Mesmo na Bahia, estado com maior população negra do Brasil, os candidatos
+                brancos
+                representam uma fatia desproporcional. Candidatos indígenas são visualmente inexistentes na escala.</p>
+            <figure class="chart-container" id="chart7">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G8 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 08</span><span
+                    class="chart-type-badge">heatmap</span>
+            </div>
+            <h3 class="chart-title">Candidaturas indígenas por estado</h3>
+            <p class="chart-desc">O heatmap evidencia a <strong>extrema raridade das candidaturas indígenas</strong>. Os
+                estados com maior presença — AM, PA, RR — coincidem com as regiões de maior concentração de povos
+                originários. O
+                estado de maior valor (AM, 8 candidaturas) representa uma fração mínima do total.</p>
+            <figure class="chart-container" id="chart8">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+        <!-- G9 -->
+        <div class="chart-block">
+            <div class="chart-meta"><span class="chart-num">Gráfico 09</span><span
+                    class="chart-type-badge">dispersão</span>
+            </div>
+            <h3 class="chart-title">Candidaturas femininas × masculinas por estado</h3>
+            <p class="chart-desc">Há correlação positiva entre os volumes masculino e feminino — estados com mais
+                candidatos
+                homens também têm mais candidatas mulheres. No entanto, <strong>todos os pontos estão abaixo da linha de
+                    paridade (45°)</strong>, confirmando que nenhum estado tem equilíbrio de gênero.</p>
+            <figure class="chart-container" id="chart9">
+                <div class="loading">Carregando gráfico…</div>
+            </figure>
+        </div>
+
+    </section>
+
+    <!-- CONCLUSÃO -->
+    <section id="conclusao" class="conclusion-section">
+        <div class="conclusion-inner">
+            <h2>Conclusões</h2>
+            <ul class="conclusion-list">
+                <li>
+                    <span class="conc-num">1</span>
+                    <p class="conc-text"><strong>Domínio masculino —</strong> Em todos os estados e regiões,
+                        candidaturas
+                        masculinas superam as femininas, representando entre 65% e 80% do total dependendo do estado.
+                        Nenhuma UF se
+                        aproxima da paridade de gênero.</p>
+                </li>
+                <li>
+                    <span class="conc-num">2</span>
+                    <p class="conc-text"><strong>Domínio de candidatos brancos —</strong> Mesmo em estados onde a
+                        população parda
+                        ou preta é majoritária segundo o IBGE, os candidatos brancos lideram nas candidaturas — a
+                        representação
+                        política não reflete a composição demográfica da sociedade.</p>
+                </li>
+                <li>
+                    <span class="conc-num">3</span>
+                    <p class="conc-text"><strong>Invisibilidade indígena —</strong> As candidaturas de povos indígenas
+                        são
+                        estatisticamente irrisórias. Mesmo o Amazonas, com expressiva população originária, registrou
+                        apenas 8
+                        candidaturas indígenas em todo o estado.</p>
+                </li>
+                <li>
+                    <span class="conc-num">4</span>
+                    <p class="conc-text"><strong>Padrão nacional —</strong> As disparidades de gênero e raça
+                        reproduzem-se de
+                        forma uniforme nos 26 estados analisados, indicando um problema sistêmico e estrutural da
+                        democracia
+                        representativa brasileira.</p>
+                </li>
+            </ul>
+            <div class="callout">
+                Esses dados reforçam a urgência de políticas públicas de incentivo à participação política de grupos
+                historicamente marginalizados — cotas de gênero nos partidos, financiamento público focado em
+                candidaturas de
+                minorias e ações de conscientização sobre representatividade democrática.
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span>Dados: TSE — Eleições Municipais 2020</span>
+        <span>Processamento: Pandas (Python) · Visualização: Vega-Lite</span>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
